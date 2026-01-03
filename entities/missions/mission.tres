@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="Module" load_steps=2 format=3 uid="uid://xbj8t6vxno76"]
+
+[ext_resource type="Script" path="res://entities/missions/mission.gd" id="1_j8bbt"]
+
+[resource]
+script = ExtResource("1_j8bbt")

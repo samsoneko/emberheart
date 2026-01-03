@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://bc4s46pyiq88w"]
+
+[ext_resource type="Texture2D" uid="uid://dg5bh6fiv0jck" path="res://ui/dungeon_hud/time_icon_atlas.png" id="1_ioamx"]
+
+[resource]
+atlas = ExtResource("1_ioamx")
+region = Rect2(24, 0, 8, 8)

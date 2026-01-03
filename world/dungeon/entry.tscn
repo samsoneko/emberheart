@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://xl2aixuct3mt"]
+
+[ext_resource type="Texture2D" uid="uid://b42gjjtos1fjl" path="res://world/dungeon/entry.png" id="1_f2owm"]
+
+[node name="Entry" type="Node2D"]
+
+[node name="EntrySprite" type="Sprite2D" parent="."]
+position = Vector2(8, 8)
+texture = ExtResource("1_f2owm")

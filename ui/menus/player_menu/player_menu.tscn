@@ -1,0 +1,86 @@
+[gd_scene load_steps=9 format=3 uid="uid://by7w8agupv31y"]
+
+[ext_resource type="Theme" uid="uid://dveyihe106cto" path="res://ui/theme/default_theme.tres" id="1_bisp7"]
+[ext_resource type="Script" path="res://ui/menus/player_menu/player_menu.gd" id="2_vgbtx"]
+[ext_resource type="Texture2D" uid="uid://ck8xdry054yea" path="res://ui/elements/ui_icons_8x8/icon_sword.tres" id="4_w4p6x"]
+[ext_resource type="Texture2D" uid="uid://b24fu58dlapm1" path="res://ui/elements/ui_icons_8x8/icon_spirits.tres" id="5_t3u32"]
+[ext_resource type="Texture2D" uid="uid://bpoclrsway4rs" path="res://ui/elements/ui_icons_8x8/icon_apple.tres" id="6_2cuqo"]
+[ext_resource type="Texture2D" uid="uid://b71awnxoly4tr" path="res://ui/elements/ui_icons_8x8/icon_chest.tres" id="7_oy0rf"]
+[ext_resource type="Texture2D" uid="uid://b71jxfgnayh54" path="res://ui/elements/ui_icons_8x8/icon_info.tres" id="8_ygk6q"]
+[ext_resource type="Texture2D" uid="uid://dlfh006oprra3" path="res://ui/elements/ui_icons_8x8/icon_settings.tres" id="9_6brix"]
+
+[node name="PlayerMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+theme = ExtResource("1_bisp7")
+script = ExtResource("2_vgbtx")
+
+[node name="TitlePanel" type="PanelContainer" parent="."]
+layout_mode = 2
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 73.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MenuTitle" type="RichTextLabel" parent="TitlePanel"]
+layout_mode = 2
+theme_type_variation = &"MenuTitle"
+text = "Player Menu"
+fit_content = true
+
+[node name="MenuPanel" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 21.0
+offset_right = 80.0
+offset_bottom = 147.0
+
+[node name="MenuButtons" type="VBoxContainer" parent="MenuPanel"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="Team" type="Button" parent="MenuPanel/MenuButtons"]
+layout_mode = 2
+text = "Team"
+icon = ExtResource("4_w4p6x")
+alignment = 0
+
+[node name="Spirits" type="Button" parent="MenuPanel/MenuButtons"]
+layout_mode = 2
+text = "Spirits"
+icon = ExtResource("5_t3u32")
+alignment = 0
+
+[node name="Items" type="Button" parent="MenuPanel/MenuButtons"]
+layout_mode = 2
+text = "Items"
+icon = ExtResource("6_2cuqo")
+alignment = 0
+
+[node name="Missions" type="Button" parent="MenuPanel/MenuButtons"]
+layout_mode = 2
+text = "Missions"
+icon = ExtResource("7_oy0rf")
+alignment = 0
+
+[node name="Notebook" type="Button" parent="MenuPanel/MenuButtons"]
+layout_mode = 2
+text = "Notebook"
+icon = ExtResource("8_ygk6q")
+alignment = 0
+
+[node name="Settings" type="Button" parent="MenuPanel/MenuButtons"]
+layout_mode = 2
+text = "Settings
+"
+icon = ExtResource("9_6brix")
+alignment = 0
+
+[connection signal="pressed" from="MenuPanel/MenuButtons/Team" to="." method="_on_menu_button_pressed" binds= ["team_menu"]]
+[connection signal="pressed" from="MenuPanel/MenuButtons/Spirits" to="." method="_on_menu_button_pressed" binds= ["spirit_menu"]]
+[connection signal="pressed" from="MenuPanel/MenuButtons/Items" to="." method="_on_menu_button_pressed" binds= ["item_menu"]]
+[connection signal="pressed" from="MenuPanel/MenuButtons/Missions" to="." method="_on_menu_button_pressed" binds= ["mission_menu"]]
+[connection signal="pressed" from="MenuPanel/MenuButtons/Notebook" to="." method="_on_menu_button_pressed" binds= ["notebook_menu"]]
+[connection signal="pressed" from="MenuPanel/MenuButtons/Settings" to="." method="_on_menu_button_pressed" binds= ["settings_menu"]]

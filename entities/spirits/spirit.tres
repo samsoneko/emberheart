@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bvdtbo5v5jetk"]
+
+[ext_resource type="Script" path="res://entities/spirits/spirit.gd" id="1_mrpmy"]
+
+[resource]
+script = ExtResource("1_mrpmy")
+id = 0
+name = ""
+genetic_code = []
+level = 0
+hp = 0
+attack = 0
+defense = 0

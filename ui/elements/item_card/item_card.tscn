@@ -1,0 +1,49 @@
+[gd_scene load_steps=3 format=3 uid="uid://b7udfgmt80bbn"]
+
+[ext_resource type="Script" path="res://ui/elements/item_card/item_card.gd" id="1_7xsl7"]
+[ext_resource type="Texture2D" uid="uid://bx3hnvlho3660" path="res://ui/elements/ui_icons_8x8/icon_potion.tres" id="2_tayg4"]
+
+[node name="ItemCard" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7xsl7")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 112.0
+offset_bottom = 22.0
+
+[node name="ItemIcon" type="Sprite2D" parent="Panel"]
+position = Vector2(11, 11)
+texture = ExtResource("2_tayg4")
+
+[node name="ItemName" type="RichTextLabel" parent="Panel"]
+clip_contents = false
+layout_mode = 2
+offset_left = 20.0
+offset_top = 6.0
+offset_right = 94.0
+offset_bottom = 17.0
+text = "Default Item"
+
+[node name="ItemCount" type="RichTextLabel" parent="Panel"]
+clip_contents = false
+layout_mode = 2
+offset_left = 89.0
+offset_top = 6.0
+offset_right = 108.0
+offset_bottom = 17.0
+bbcode_enabled = true
+text = "[right]99[/right]"
+
+[node name="Button" type="Button" parent="Panel"]
+layout_mode = 2
+offset_right = 112.0
+offset_bottom = 22.0
+theme_type_variation = &"InvisibleButton"
+
+[connection signal="pressed" from="Panel/Button" to="." method="_on_button_pressed"]

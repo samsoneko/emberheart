@@ -1,0 +1,39 @@
+[gd_scene load_steps=3 format=3 uid="uid://bokhilg784fyy"]
+
+[ext_resource type="Script" path="res://ui/elements/mission_card/mission_card.gd" id="1_l5t8f"]
+[ext_resource type="Texture2D" uid="uid://bx3hnvlho3660" path="res://ui/elements/ui_icons_8x8/icon_potion.tres" id="2_japnb"]
+
+[node name="MissionCard" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_l5t8f")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 112.0
+offset_bottom = 18.0
+
+[node name="MissionIcon" type="Sprite2D" parent="Panel"]
+position = Vector2(9, 9)
+texture = ExtResource("2_japnb")
+
+[node name="MissionName" type="RichTextLabel" parent="Panel"]
+clip_contents = false
+layout_mode = 0
+offset_left = 15.0
+offset_top = 4.0
+offset_right = 112.0
+offset_bottom = 15.0
+text = "Default Mission"
+
+[node name="Button" type="Button" parent="Panel"]
+layout_mode = 0
+offset_right = 112.0
+offset_bottom = 18.0
+theme_type_variation = &"InvisibleButton"
+
+[connection signal="pressed" from="Panel/Button" to="." method="_on_button_pressed"]

@@ -1,0 +1,82 @@
+{
+	"debug" : {
+		"name" : "Debug Dungeon",
+		"floors" : 4,
+		"description" : "A dungeon used for debugging and placeholding",
+		"terrain_id" : 4,
+		"fluid_id" : 100,
+		"generation_params" : {
+			"fluid_frequency" : 0.05,
+			"fluid_threshold" : 0.3,
+			"item_probability" : 50,
+			"max_num_rooms" : 8,
+			"max_num_1_tile_rooms" : 4,
+			"grid_width" : 118,
+			"grid_height" : 83
+		}
+	},
+	"lagoon" : {
+		"name" : "Lagoon",
+		"floors" : 4,
+		"description" : "The lagoon.",
+		"terrain_id" : 1,
+		"fluid_id" : 100,
+		"details_large" : [
+			"res://world/dungeon/tilesets/terrain_details/lagoon_detail_large_01.png",
+			"res://world/dungeon/tilesets/terrain_details/lagoon_detail_large_02.png"
+		],
+		"details_small" : [
+			"res://world/dungeon/tilesets/terrain_details/lagoon_detail_small_01.png",
+			"res://world/dungeon/tilesets/terrain_details/lagoon_detail_small_02.png"
+		],
+		"generation_params" : {
+			"fluid_frequency" : 0.08,
+			"fluid_threshold" : 0.05,
+			"item_probability" : 50,
+			"max_num_rooms" : 8,
+			"max_num_1_tile_rooms" : 4,
+			"grid_width" : 118,
+			"grid_height" : 83
+		},
+		"dungeon_ost" : "ost_lagoon"
+	},
+	"meadows" : {
+		"name" : "Meadows",
+		"floors" : 8,
+		"description" : "The meadows.",
+		"terrain_id" : 2,
+		"fluid_id" : 100
+	},
+	"apple_woods" : {
+		"name" : "Apple Woods",
+		"floors" : 8,
+		"description" : "The highest layers of the woods. Rich of fruits, natural resources and predictable foes.",
+		"terrain_id" : 3,
+		"fluid_id" : 100
+	},
+	"deeper_woods" : {
+		"name" : "Deeper Woods",
+		"floors" : 8,
+		"description" : "The deeper layers of the woods, with stronger foes and valuable resources.",
+		"terrain_id" : 4,
+		"fluid_id" : 100,
+		"details_large" : [
+			"res://world/dungeon/tilesets/terrain_details/deeper_woods_detail_large_01.png"
+		],
+		"dungeon_ost" : "ost_deeper_woods"
+	},
+	"dry_valley" : {
+		"name" : "Dry Valley",
+		"floors" : 8,
+		"description" : "A dry valley inhabited by dangerous foes.",
+		"terrain_id" : 5,
+		"fluid_id" : 100
+	},
+	"dark_desert" : {
+		"name" : "Dark Desert",
+		"floors" : 8,
+		"description" : "The dark desert.",
+		"terrain_id" : 6,
+		"fluid_id" : 100
+	}
+}

@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://di25yr36oldiw"]
+
+[ext_resource type="Texture2D" uid="uid://clqep33gy2k0t" path="res://entities/objects/genetic_interface.png" id="1_f6u8c"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tndh1"]
+size = Vector2(14, 16)
+
+[node name="CreateMachine" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_f6u8c")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_tndh1")

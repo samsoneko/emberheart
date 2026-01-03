@@ -1,0 +1,53 @@
+[gd_scene load_steps=9 format=3 uid="uid://ciqkbn7stteot"]
+
+[ext_resource type="Script" uid="uid://de8ffd1akyuqn" path="res://world/dungeon/dungeon_manager.gd" id="1_paov1"]
+[ext_resource type="TileSet" uid="uid://c0xq5ys7aj1n1" path="res://world/dungeon/tilesets/dungeon_tileset.tres" id="2_j52v4"]
+[ext_resource type="Script" uid="uid://dmq7twyi3lou" path="res://world/dungeon/dungeon_tilemap.gd" id="3_y82ak"]
+[ext_resource type="PackedScene" uid="uid://xl2aixuct3mt" path="res://world/dungeon/entry.tscn" id="4_pwhao"]
+[ext_resource type="PackedScene" uid="uid://dykndv5liwwhx" path="res://world/dungeon/exit.tscn" id="5_5itdv"]
+[ext_resource type="PackedScene" uid="uid://ddvibub5dt7bb" path="res://entities/player/player.tscn" id="6_160gt"]
+[ext_resource type="PackedScene" uid="uid://cl3jp2y66ps63" path="res://ui/ui.tscn" id="7_386jd"]
+[ext_resource type="PackedScene" uid="uid://m428x1oojqfo" path="res://entities/npcs/test_dungeon_entity/player_follower_entity.tscn" id="8_x45ev"]
+
+[node name="Dungeon" type="Node2D"]
+script = ExtResource("1_paov1")
+
+[node name="DungeonRenderer" type="Node" parent="."]
+script = ExtResource("3_y82ak")
+
+[node name="Ground" type="TileMapLayer" parent="DungeonRenderer"]
+use_parent_material = true
+tile_set = ExtResource("2_j52v4")
+
+[node name="GroundDetail" type="TileMapLayer" parent="DungeonRenderer"]
+use_parent_material = true
+tile_set = ExtResource("2_j52v4")
+
+[node name="Terrain" type="TileMapLayer" parent="DungeonRenderer"]
+use_parent_material = true
+tile_set = ExtResource("2_j52v4")
+
+[node name="TerrainDetail" type="TileMapLayer" parent="DungeonRenderer"]
+use_parent_material = true
+tile_set = ExtResource("2_j52v4")
+
+[node name="Fluid" type="TileMapLayer" parent="DungeonRenderer"]
+use_parent_material = true
+tile_set = ExtResource("2_j52v4")
+
+[node name="Entry" parent="." instance=ExtResource("4_pwhao")]
+position = Vector2(-16, 0)
+
+[node name="Exit" parent="." instance=ExtResource("5_5itdv")]
+position = Vector2(0, -16)
+
+[node name="Player" parent="." instance=ExtResource("6_160gt")]
+z_index = 1
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(2, -16)
+
+[node name="UI" parent="." instance=ExtResource("7_386jd")]
+
+[node name="Player2" parent="." instance=ExtResource("8_x45ev")]
+position = Vector2(16, 0)

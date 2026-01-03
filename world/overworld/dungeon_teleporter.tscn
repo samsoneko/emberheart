@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://xxiiv4te6sea"]
+
+[ext_resource type="Script" path="res://world/overworld/dungeon_teleporter.gd" id="1_kfgoj"]
+[ext_resource type="Texture2D" uid="uid://b42gjjtos1fjl" path="res://world/dungeon/entry.png" id="1_vo2yu"]
+
+[node name="DungeonTeleporter" type="Node2D"]
+script = ExtResource("1_kfgoj")
+
+[node name="TeleporterSprite" type="Sprite2D" parent="."]
+position = Vector2(8, 8)
+texture = ExtResource("1_vo2yu")

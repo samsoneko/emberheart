@@ -1,0 +1,48 @@
+[gd_scene load_steps=2 format=3 uid="uid://p6plpk6w4ro7"]
+
+[ext_resource type="Script" path="res://ui/menus/player_menu/settings_menu.gd" id="1_hkskd"]
+
+[node name="SettingsMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_hkskd")
+
+[node name="SettingsPanel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 21.0
+offset_right = 132.0
+offset_bottom = 178.0
+
+[node name="TitlePanel" type="Panel" parent="SettingsPanel"]
+layout_mode = 0
+offset_top = -19.0
+offset_right = 52.0
+offset_bottom = -1.0
+
+[node name="Title" type="RichTextLabel" parent="SettingsPanel/TitlePanel"]
+clip_contents = false
+layout_mode = 0
+offset_left = 5.0
+offset_top = 4.0
+offset_right = 83.0
+offset_bottom = 15.0
+theme_type_variation = &"MenuTitle"
+text = "Settings"
+
+[node name="ColorPicker" type="ColorPicker" parent="SettingsPanel"]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 21.0
+offset_right = 358.0
+offset_bottom = 293.0
+scale = Vector2(0.2, 0.2)
+color = Color(0.647059, 0.858824, 0.898039, 1)
+edit_alpha = false
+sampler_visible = false
+color_modes_visible = false
+sliders_visible = false
+hex_visible = false
+presets_visible = false

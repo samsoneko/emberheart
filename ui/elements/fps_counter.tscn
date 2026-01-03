@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://dgsc7kjgxh6ce"]
+
+[ext_resource type="Theme" uid="uid://dveyihe106cto" path="res://ui/theme/default_theme.tres" id="1_72srn"]
+[ext_resource type="Script" path="res://ui/elements/fps_counter.gd" id="2_fnkyu"]
+
+[node name="FPSCounter" type="Control"]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+grow_horizontal = 0
+theme = ExtResource("1_72srn")
+script = ExtResource("2_fnkyu")
+
+[node name="FPSPanel" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -18.0
+offset_right = 50.0
+grow_vertical = 0
+theme = ExtResource("1_72srn")
+theme_type_variation = &"NoHeadPanel"
+
+[node name="Label" type="Label" parent="FPSPanel"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.969698, 0.900961, 0, 1)

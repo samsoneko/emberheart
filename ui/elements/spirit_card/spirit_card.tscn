@@ -1,0 +1,97 @@
+[gd_scene load_steps=4 format=3 uid="uid://bvuukg3eqlxba"]
+
+[ext_resource type="Theme" uid="uid://dveyihe106cto" path="res://ui/theme/default_theme.tres" id="1_f0hlu"]
+[ext_resource type="Script" path="res://ui/elements/spirit_card/spirit_card.gd" id="2_krr5f"]
+[ext_resource type="Texture2D" uid="uid://bwl7dhichibi4" path="res://unused/attack_icon.png" id="3_4mvut"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+theme = ExtResource("1_f0hlu")
+script = ExtResource("2_krr5f")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 112.0
+offset_bottom = 24.0
+
+[node name="SpriteBackground" type="Panel" parent="Panel"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 22.0
+offset_bottom = 22.0
+theme_type_variation = &"SpriteBackgroundPanel"
+
+[node name="Name" type="RichTextLabel" parent="Panel"]
+clip_contents = false
+layout_mode = 0
+offset_left = 24.0
+offset_top = 2.0
+offset_right = 92.0
+offset_bottom = 13.0
+text = "Name"
+scroll_active = false
+
+[node name="Button" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 94.0
+offset_top = 2.0
+offset_right = 110.0
+offset_bottom = 22.0
+text = ">"
+
+[node name="BodyIcon" type="Sprite2D" parent="Panel"]
+position = Vector2(12, 12)
+
+[node name="BackIcon" type="Sprite2D" parent="Panel"]
+position = Vector2(12, 12)
+
+[node name="LegsIcon" type="Sprite2D" parent="Panel"]
+position = Vector2(12, 12)
+
+[node name="HeadIcon" type="Sprite2D" parent="Panel"]
+position = Vector2(12, 12)
+
+[node name="GeneDisplay" type="Control" parent="Panel"]
+anchors_preset = 0
+offset_left = 27.0
+offset_top = 17.0
+offset_right = 27.0
+offset_bottom = 17.0
+
+[node name="Gene1" type="Sprite2D" parent="Panel/GeneDisplay"]
+position = Vector2(0.5, 0.5)
+texture = ExtResource("3_4mvut")
+
+[node name="Gene2" type="Sprite2D" parent="Panel/GeneDisplay"]
+position = Vector2(18.5, 0.5)
+texture = ExtResource("3_4mvut")
+
+[node name="Gene3" type="Sprite2D" parent="Panel/GeneDisplay"]
+position = Vector2(36.5, 0.5)
+texture = ExtResource("3_4mvut")
+
+[node name="Gene4" type="Sprite2D" parent="Panel/GeneDisplay"]
+position = Vector2(54.5, 0.5)
+texture = ExtResource("3_4mvut")
+
+[node name="LevelDisplay" type="Control" parent="Panel"]
+anchors_preset = 0
+offset_left = 36.0
+offset_top = 17.0
+offset_right = 36.0
+offset_bottom = 17.0
+
+[node name="Level1" type="Sprite2D" parent="Panel/LevelDisplay"]
+
+[node name="Level2" type="Sprite2D" parent="Panel/LevelDisplay"]
+position = Vector2(18, 0)
+
+[node name="Level3" type="Sprite2D" parent="Panel/LevelDisplay"]
+position = Vector2(36, 0)
+
+[node name="Level4" type="Sprite2D" parent="Panel/LevelDisplay"]
+position = Vector2(54, 0.5)
+
+[connection signal="pressed" from="Panel/Button" to="." method="_on_item_clicked"]

@@ -1,0 +1,19 @@
+{
+	"debug_dialogue" : [
+		{
+			"speaker" : "Cassie",
+			"image" : "res://ui/elements/level_5.png",
+			"text" : "This is a debug dialogue, and this is the first expression."
+		},
+		{
+			"speaker" : "Other Character",
+			"image" : "res://ui/elements/level_4.png",
+			"text" : "Oh, thats a very interesting opinion."
+		},
+		{
+			"speaker" : "Cassie",
+			"image" : "res://ui/elements/level_5.png",
+			"text" : "This is not an opinion, it's an onion."
+		}
+	]
+}

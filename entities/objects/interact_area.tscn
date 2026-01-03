@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://bdgnpfgxrec24"]
+
+[ext_resource type="Script" path="res://entities/objects/interact_area.gd" id="1_ysvib"]
+[ext_resource type="Theme" uid="uid://dveyihe106cto" path="res://ui/theme/default_theme.tres" id="2_7qhg5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3drnm"]
+size = Vector2(16, 16)
+
+[node name="InteractArea" type="Area2D"]
+script = ExtResource("1_ysvib")
+
+[node name="InteractShape" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_3drnm")
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = -8.0
+offset_top = -33.0
+offset_right = 8.0
+offset_bottom = -16.0
+theme = ExtResource("2_7qhg5")
+theme_type_variation = &"InteractPanel"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Panel"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 2.0
+offset_right = 31.0
+offset_bottom = 10.0
+text = "E"
+fit_content = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

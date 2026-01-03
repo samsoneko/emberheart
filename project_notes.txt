@@ -1,0 +1,18 @@
+Notes:
+	-Use Index 0 for debug items / entities
+	-Set player movement type in the setup function of a scene
+	-0 = Attack, 1 = Defense, 2 = Magic
+	
+	instantiate_ui() takes arguments variable for dungeon?
+	ui update on scene change!
+
+Input Keyboard:
+	wasd / arrow keys for movement
+	e for confirm / interaction
+	q for quit
+	esc for menu / start
+
+Globals:
+	Global: For communication between nodes and global getters / setters
+	PlayerData: For all data related to the player
+	GameData: For static lookup tables and information

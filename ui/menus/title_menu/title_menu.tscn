@@ -1,0 +1,109 @@
+[gd_scene load_steps=11 format=3 uid="uid://chskj7fyxy5ox"]
+
+[ext_resource type="Theme" uid="uid://dveyihe106cto" path="res://ui/theme/default_theme.tres" id="1_cjacp"]
+[ext_resource type="Script" path="res://ui/menus/title_menu/title_menu.gd" id="2_7imby"]
+[ext_resource type="Texture2D" uid="uid://dpw3rdhye0xxi" path="res://ui/menus/title_menu/title_background.png" id="2_48m2g"]
+[ext_resource type="Texture2D" uid="uid://bggi4lecnuhog" path="res://ui/menus/title_menu/background.png" id="3_lrr1l"]
+[ext_resource type="Texture2D" uid="uid://d13q46fq3jvjx" path="res://ui/elements/ui_icons_8x8/icon_new.tres" id="4_lma3w"]
+[ext_resource type="Texture2D" uid="uid://bnani5yp51xn0" path="res://ui/elements/ui_icons_8x8/icon_load.tres" id="5_0fvb0"]
+[ext_resource type="Texture2D" uid="uid://b5o4dlrbdfbxx" path="res://ui/title_logo.png" id="5_r82q5"]
+[ext_resource type="Texture2D" uid="uid://cj0itoqnpqlv1" path="res://ui/title.png" id="6_dmmku"]
+[ext_resource type="Texture2D" uid="uid://dlfh006oprra3" path="res://ui/elements/ui_icons_8x8/icon_settings.tres" id="6_qpl5c"]
+[ext_resource type="Texture2D" uid="uid://b37yp4ga13sne" path="res://ui/elements/ui_icons_8x8/icon_cancel.tres" id="8_2mc2q"]
+
+[node name="TitleMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_cjacp")
+script = ExtResource("2_7imby")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 180.0
+texture = ExtResource("3_lrr1l")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -90.0
+offset_right = 160.0
+offset_bottom = 90.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_48m2g")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -55.5
+offset_top = -50.0
+offset_right = 55.5
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="LogoTexture" type="TextureRect" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("5_r82q5")
+
+[node name="TitleTexture" type="TextureRect" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("6_dmmku")
+
+[node name="MenuButtons" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="NewGame" type="Button" parent="VBoxContainer/MenuButtons"]
+layout_mode = 2
+text = "New Game"
+icon = ExtResource("4_lma3w")
+
+[node name="Load" type="Button" parent="VBoxContainer/MenuButtons"]
+layout_mode = 2
+text = "Load"
+icon = ExtResource("5_0fvb0")
+
+[node name="Options" type="Button" parent="VBoxContainer/MenuButtons"]
+layout_mode = 2
+text = "Options"
+icon = ExtResource("6_qpl5c")
+
+[node name="Quit" type="Button" parent="VBoxContainer/MenuButtons"]
+layout_mode = 2
+text = "Quit"
+icon = ExtResource("8_2mc2q")
+
+[connection signal="pressed" from="VBoxContainer/MenuButtons/NewGame" to="." method="_on_new_game_pressed"]
+[connection signal="pressed" from="VBoxContainer/MenuButtons/Load" to="." method="_on_load_pressed"]
+[connection signal="pressed" from="VBoxContainer/MenuButtons/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="VBoxContainer/MenuButtons/Quit" to="." method="_on_quit_pressed"]

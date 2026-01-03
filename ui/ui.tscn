@@ -1,0 +1,51 @@
+[gd_scene load_steps=13 format=3 uid="uid://cl3jp2y66ps63"]
+
+[ext_resource type="Script" uid="uid://bkve46vejikdb" path="res://ui/ui_manager.gd" id="1_53fnq"]
+[ext_resource type="PackedScene" uid="uid://cqcch5eafsiwr" path="res://ui/menus/fusion_menu/fusion_menu.tscn" id="2_1osxv"]
+[ext_resource type="PackedScene" uid="uid://by7w8agupv31y" path="res://ui/menus/player_menu/player_menu.tscn" id="3_wmfxs"]
+[ext_resource type="PackedScene" uid="uid://ba8348mv7t2tg" path="res://ui/dialogue/dialogue_manager.tscn" id="4_m3xyo"]
+[ext_resource type="PackedScene" uid="uid://bfti50r02lmdw" path="res://ui/menus/dungeon_menu.tscn" id="5_yh53c"]
+[ext_resource type="PackedScene" uid="uid://dc0rifb5nqc5s" path="res://ui/menus/player_menu/notebook_menu.tscn" id="6_hgrx8"]
+[ext_resource type="PackedScene" uid="uid://5cgg7eoquuia" path="res://ui/menus/player_menu/items_menu.tscn" id="7_5ltx4"]
+[ext_resource type="PackedScene" uid="uid://dswvmn0ct3kur" path="res://ui/menus/player_menu/missions_menu.tscn" id="8_jw5va"]
+[ext_resource type="PackedScene" uid="uid://p6plpk6w4ro7" path="res://ui/menus/player_menu/settings_menu.tscn" id="9_4m1gq"]
+[ext_resource type="PackedScene" uid="uid://clqeea3s4a84h" path="res://ui/menus/player_menu/spirit_menu.tscn" id="10_gfgpx"]
+[ext_resource type="PackedScene" uid="uid://dx1cpn11kn8u7" path="res://ui/menus/player_menu/team_menu.tscn" id="11_k0poo"]
+[ext_resource type="PackedScene" uid="uid://dunskxiqyj5jc" path="res://ui/dungeon_hud/dungeon_hud.tscn" id="12_cdqkn"]
+
+[node name="UI" type="CanvasLayer"]
+script = ExtResource("1_53fnq")
+
+[node name="GeneticMenu" parent="." instance=ExtResource("2_1osxv")]
+visible = false
+
+[node name="PlayerMenu" parent="." instance=ExtResource("3_wmfxs")]
+visible = false
+size_flags_horizontal = 4
+
+[node name="DialogueManager" parent="." instance=ExtResource("4_m3xyo")]
+visible = false
+
+[node name="DungeonMenu" parent="." instance=ExtResource("5_yh53c")]
+visible = false
+
+[node name="NotebookMenu" parent="." instance=ExtResource("6_hgrx8")]
+visible = false
+
+[node name="ItemsMenu" parent="." instance=ExtResource("7_5ltx4")]
+visible = false
+
+[node name="MissionsMenu" parent="." instance=ExtResource("8_jw5va")]
+visible = false
+
+[node name="SettingsMenu" parent="." instance=ExtResource("9_4m1gq")]
+visible = false
+
+[node name="SpiritMenu" parent="." instance=ExtResource("10_gfgpx")]
+visible = false
+
+[node name="TeamMenu" parent="." instance=ExtResource("11_k0poo")]
+visible = false
+
+[node name="DungeonHUD" parent="." instance=ExtResource("12_cdqkn")]
+visible = false

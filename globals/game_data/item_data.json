@@ -1,0 +1,80 @@
+{
+	"debug_item" : {
+		"name" : "Debug Item",
+		"category" : "Material",
+		"description" : "A item used for debugging and placeholding",
+		"spritePath" : "res://entities/items/item_sprite_00.tres"
+	},
+	"white_herbs" : {
+		"name" : "White Herbs",
+		"category" : "Material",
+		"description" : "A white herb found in the upper floors of the dungeon",
+		"spritePath" : "res://entities/items/item_sprite_01.tres"
+	},
+	"yellow_herbs" : {
+		"name" : "Yellow Herbs",
+		"category" : "Material",
+		"description" : "A yellow herb found in the upper floors of the dungeon",
+		"spritePath" : "res://entities/items/item_sprite_02.tres"
+	},
+	"red_herbs" : {
+		"name" : "Red Herbs",
+		"category" : "Material",
+		"description" : "A red herb found in the upper floors of the dungeon",
+		"spritePath" : "res://entities/items/item_sprite_03.tres"
+	},
+	"orange_herbs" : {
+		"name" : "Orange Herbs",
+		"category" : "Material",
+		"description" : "A orange herb found in the upper floors of the dungeon",
+		"spritePath" : "res://entities/items/item_sprite_04.tres"
+	},
+	"wooden_stick" : {
+		"name" : "Wooden Stick",
+		"category" : "Material",
+		"description" : "A wooden stick found in the upper floors of the dungeon",
+		"spritePath" : "res://entities/items/item_sprite_05.tres"
+	},
+	"small_potion" : {
+		"name" : "Small Potion",
+		"category" : "Consumable",
+		"description" : "A potion healing a small amount of HP",
+		"spritePath" : "res://entities/items/item_sprite_06.tres"
+	},
+	"medium_potion" : {
+		"name" : "Medium Potion",
+		"category" : "Consumable",
+		"description" : "A potion healing a medium amount of HP",
+		"spritePath" : "res://entities/items/item_sprite_07.tres"
+	},
+	"large_potion" : {
+		"name" : "Large Potion",
+		"category" : "Consumable",
+		"description" : "A potion healing a large amount of HP",
+		"spritePath" : "res://entities/items/item_sprite_08.tres"
+	},
+	"blue_maunscript" : {
+		"name" : "Blue Book",
+		"category" : "Key",
+		"description" : "A mysterious blue manuscript",
+		"spritePath" : "res://entities/items/item_sprite_09.tres"
+	},
+	"green_manuscript" : {
+		"name" : "Green Book",
+		"category" : "Key",
+		"description" : "A mysterious green manuscript",
+		"spritePath" : "res://entities/items/item_sprite_10.tres"
+	},
+	"golden_manuscript" : {
+		"name" : "Golden Book",
+		"category" : "Key",
+		"description" : "A mysterious golden manuscript",
+		"spritePath" : "res://entities/items/item_sprite_11.tres"
+	},
+	"pink_manuscript" : {
+		"name" : "Pink Book",
+		"category" : "Key",
+		"description" : "A mysterious pink manuscript",
+		"spritePath" : "res://entities/items/item_sprite_12.tres"
+	}
+}

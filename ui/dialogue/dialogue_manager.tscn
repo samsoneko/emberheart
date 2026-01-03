@@ -1,0 +1,74 @@
+[gd_scene load_steps=3 format=3 uid="uid://ba8348mv7t2tg"]
+
+[ext_resource type="Script" path="res://ui/dialogue/dialogue_manager.gd" id="1_k57lu"]
+[ext_resource type="Texture2D" uid="uid://cwybvhttbph4d" path="res://ui/elements/level_5.png" id="2_c3lky"]
+
+[node name="DialogueManager" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_k57lu")
+
+[node name="DialoguePanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -68.0
+offset_right = 100.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_type_variation = &"NoHeadPanel"
+
+[node name="Name" type="RichTextLabel" parent="DialoguePanel"]
+clip_contents = false
+layout_mode = 0
+offset_left = 4.0
+offset_top = 3.0
+offset_right = 197.0
+offset_bottom = 14.0
+text = "Cassie"
+
+[node name="DialogueBackground" type="Panel" parent="DialoguePanel"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 15.0
+offset_right = 197.0
+offset_bottom = 61.0
+theme_type_variation = &"TextBackgroundPanel"
+
+[node name="Dialogue" type="RichTextLabel" parent="DialoguePanel/DialogueBackground"]
+clip_contents = false
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 192.0
+offset_bottom = 44.0
+text = "This is an example text, intended for replacement"
+
+[node name="ImagePanel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 112.0
+offset_right = 58.0
+offset_bottom = 150.0
+theme_type_variation = &"NoHeadPanel"
+
+[node name="ImageBackground" type="Panel" parent="ImagePanel"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 35.0
+offset_bottom = 35.0
+theme_type_variation = &"SpriteBackgroundPanel"
+
+[node name="Image" type="Sprite2D" parent="ImagePanel/ImageBackground"]
+position = Vector2(16, 16)
+texture = ExtResource("2_c3lky")

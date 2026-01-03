@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dykndv5liwwhx"]
+
+[ext_resource type="Texture2D" uid="uid://del8nw0cq0wqy" path="res://world/dungeon/exit.png" id="1_kqe8g"]
+[ext_resource type="Script" path="res://world/dungeon/exit.gd" id="1_pa8qn"]
+
+[node name="Exit" type="Node2D"]
+script = ExtResource("1_pa8qn")
+
+[node name="ExitSprite" type="Sprite2D" parent="."]
+position = Vector2(8, 8)
+texture = ExtResource("1_kqe8g")

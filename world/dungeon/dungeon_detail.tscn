@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://uwrc42pcs5wv"]
+
+[ext_resource type="Texture2D" uid="uid://7wg0fya58e4r" path="res://world/dungeon/tilesets/terrain_details/deeper_woods_detail_large_01.png" id="1_3ivc1"]
+[ext_resource type="Script" path="res://world/dungeon/dungeon_detail.gd" id="1_nc5tl"]
+
+[node name="DungeonDetail" type="Node2D"]
+script = ExtResource("1_nc5tl")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_3ivc1")
