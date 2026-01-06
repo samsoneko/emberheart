@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cqcch5eafsiwr"]
 
-[ext_resource type="Script" path="res://ui/menus/fusion_menu/fusion_menu.gd" id="1_bbc7g"]
+[ext_resource type="Script" uid="uid://brdomw64e6d4o" path="res://ui/menus/fusion_menu/fusion_menu.gd" id="1_bbc7g"]
 [ext_resource type="Theme" uid="uid://dveyihe106cto" path="res://ui/theme/default_theme.tres" id="2_otwa5"]
 [ext_resource type="Texture2D" uid="uid://b8p4x2rjmgcg0" path="res://ui/elements/ui_icons_8x8/icon_fusion.tres" id="3_yr4q5"]
 
@@ -12,7 +12,19 @@ size_flags_vertical = 4
 theme = ExtResource("2_otwa5")
 script = ExtResource("1_bbc7g")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="TitlePanel" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 103.0
+offset_bottom = 20.0
+
+[node name="MenuTitle" type="RichTextLabel" parent="TitlePanel"]
+layout_mode = 2
+theme_type_variation = &"MenuTitle"
+text = "Core Fusion Menu"
+
+[node name="Panel" type="PanelContainer" parent="."]
 layout_mode = 0
 offset_left = 2.0
 offset_top = 21.0
@@ -20,66 +32,42 @@ offset_right = 318.0
 offset_bottom = 178.0
 theme = ExtResource("2_otwa5")
 
-[node name="TitlePanel" type="Panel" parent="Panel"]
-layout_mode = 0
-offset_top = -19.0
-offset_right = 101.0
-offset_bottom = -1.0
+[node name="HSplitContainer" type="HSplitContainer" parent="Panel"]
+layout_mode = 2
+split_offset = 120
 
-[node name="MenuTitle" type="RichTextLabel" parent="Panel/TitlePanel"]
-layout_mode = 0
-offset_left = 5.0
-offset_top = 4.0
-offset_right = 116.0
-offset_bottom = 15.0
-theme_type_variation = &"MenuTitle"
-text = "Core Fusion Menu"
-
-[node name="ScrollContainer" type="ScrollContainer" parent="Panel"]
-layout_mode = 0
-offset_left = 5.0
-offset_top = 5.0
-offset_right = 124.0
-offset_bottom = 150.0
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel/HSplitContainer"]
+layout_mode = 2
 follow_focus = true
 
-[node name="CandidateList" type="GridContainer" parent="Panel/ScrollContainer"]
+[node name="CandidateList" type="GridContainer" parent="Panel/HSplitContainer/ScrollContainer"]
 layout_mode = 2
 theme_override_constants/h_separation = 114
 theme_override_constants/v_separation = 26
 
-[node name="FusionButton" type="Button" parent="Panel"]
-layout_mode = 0
-offset_left = 226.0
-offset_top = 69.0
-offset_right = 285.0
-offset_bottom = 87.0
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/HSplitContainer"]
+layout_mode = 2
+
+[node name="PH1Slot" type="Panel" parent="Panel/HSplitContainer/VBoxContainer"]
+custom_minimum_size = Vector2(112, 24)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="PH2Slot" type="Panel" parent="Panel/HSplitContainer/VBoxContainer"]
+custom_minimum_size = Vector2(112, 24)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="FusionButton" type="Button" parent="Panel/HSplitContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
 theme = ExtResource("2_otwa5")
 text = "Fusion!"
 icon = ExtResource("3_yr4q5")
 
-[node name="PH1Slot" type="Panel" parent="Panel"]
-layout_mode = 0
-offset_left = 199.0
-offset_top = 15.0
-offset_right = 311.0
-offset_bottom = 39.0
-theme_type_variation = &"NoHeadPanel"
+[node name="ResultSlot" type="Panel" parent="Panel/HSplitContainer/VBoxContainer"]
+custom_minimum_size = Vector2(112, 24)
+layout_mode = 2
+size_flags_horizontal = 4
 
-[node name="PH2Slot" type="Panel" parent="Panel"]
-layout_mode = 0
-offset_left = 199.0
-offset_top = 42.0
-offset_right = 311.0
-offset_bottom = 66.0
-theme_type_variation = &"NoHeadPanel"
-
-[node name="ResultSlot" type="Panel" parent="Panel"]
-layout_mode = 0
-offset_left = 199.0
-offset_top = 90.0
-offset_right = 311.0
-offset_bottom = 114.0
-theme_type_variation = &"NoHeadPanel"
-
-[connection signal="pressed" from="Panel/FusionButton" to="." method="_on_Fusion_clicked"]
+[connection signal="pressed" from="Panel/HSplitContainer/VBoxContainer/FusionButton" to="." method="_on_Fusion_clicked"]

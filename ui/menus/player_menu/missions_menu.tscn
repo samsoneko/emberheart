@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://dswvmn0ct3kur"]
 
-[ext_resource type="Script" path="res://ui/menus/player_menu/missions_menu.gd" id="1_15rhy"]
+[ext_resource type="Script" uid="uid://dbhy1wjhv7xwq" path="res://ui/menus/player_menu/missions_menu.gd" id="1_15rhy"]
 [ext_resource type="Texture2D" uid="uid://d35s32lx7tgfy" path="res://ui/elements/ui_icons_8x8/icon_text.tres" id="2_im8tn"]
 [ext_resource type="Texture2D" uid="uid://e22ekkxcrlpa" path="res://ui/elements/ui_icons_8x8/icon_clock.tres" id="3_5ecvu"]
 [ext_resource type="Texture2D" uid="uid://dbga165py41ol" path="res://ui/elements/ui_icons_8x8/icon_confirm.tres" id="4_ef15q"]
@@ -13,146 +13,121 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_15rhy")
 
-[node name="MissionsPanel" type="Panel" parent="."]
+[node name="TitlePanel" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 55.0
+offset_bottom = 20.0
+
+[node name="Title" type="RichTextLabel" parent="TitlePanel"]
+clip_contents = false
+layout_mode = 2
+theme_type_variation = &"MenuTitle"
+text = "Missions"
+
+[node name="MissionsPanel" type="PanelContainer" parent="."]
 layout_mode = 0
 offset_left = 2.0
 offset_top = 21.0
 offset_right = 132.0
 offset_bottom = 178.0
 
-[node name="TitlePanel" type="Panel" parent="MissionsPanel"]
-layout_mode = 0
-offset_top = -19.0
-offset_right = 53.0
-offset_bottom = -1.0
+[node name="VBoxContainer" type="VBoxContainer" parent="MissionsPanel"]
+layout_mode = 2
 
-[node name="Title" type="RichTextLabel" parent="MissionsPanel/TitlePanel"]
-clip_contents = false
-layout_mode = 0
-offset_left = 5.0
-offset_top = 4.0
-offset_right = 53.0
-offset_bottom = 15.0
-theme_type_variation = &"MenuTitle"
-text = "Missions"
+[node name="HBoxContainer" type="HBoxContainer" parent="MissionsPanel/VBoxContainer"]
+layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MissionsPanel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 5.0
-offset_top = 5.0
-offset_right = -5.0
-offset_bottom = -137.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="AllMissions" type="Button" parent="MissionsPanel/HBoxContainer"]
+[node name="AllMissions" type="Button" parent="MissionsPanel/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 toggle_mode = true
 icon = ExtResource("2_im8tn")
 
-[node name="ActiveMissions" type="Button" parent="MissionsPanel/HBoxContainer"]
+[node name="ActiveMissions" type="Button" parent="MissionsPanel/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 toggle_mode = true
 icon = ExtResource("3_5ecvu")
 
-[node name="CompletedMissions" type="Button" parent="MissionsPanel/HBoxContainer"]
+[node name="CompletedMissions" type="Button" parent="MissionsPanel/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 toggle_mode = true
 icon = ExtResource("4_ef15q")
 
-[node name="FailedMissions" type="Button" parent="MissionsPanel/HBoxContainer"]
+[node name="FailedMissions" type="Button" parent="MissionsPanel/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 toggle_mode = true
 icon = ExtResource("5_atq1j")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="MissionsPanel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 5.0
-offset_top = 23.0
-offset_right = -5.0
-offset_bottom = -5.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="ScrollContainer" type="ScrollContainer" parent="MissionsPanel/VBoxContainer"]
+custom_minimum_size = Vector2(120, 130)
+layout_mode = 2
 follow_focus = true
 
-[node name="MissionList" type="GridContainer" parent="MissionsPanel/ScrollContainer"]
+[node name="MissionList" type="GridContainer" parent="MissionsPanel/VBoxContainer/ScrollContainer"]
+custom_minimum_size = Vector2(120, 130)
 layout_mode = 2
 theme_override_constants/v_separation = 20
 
-[node name="DetailPanel" type="Panel" parent="."]
+[node name="DetailTitlePanel" type="PanelContainer" parent="."]
+visible = false
 layout_mode = 0
-offset_left = 133.0
-offset_top = 21.0
-offset_right = 318.0
-offset_bottom = 128.0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 92.0
+offset_bottom = 20.0
 
-[node name="DetailTitlePanel" type="Panel" parent="DetailPanel"]
-layout_mode = 0
-offset_top = -19.0
-offset_right = 90.0
-offset_bottom = -1.0
-
-[node name="Title" type="RichTextLabel" parent="DetailPanel/DetailTitlePanel"]
+[node name="Title" type="RichTextLabel" parent="DetailTitlePanel"]
 clip_contents = false
-layout_mode = 0
-offset_left = 5.0
-offset_top = 4.0
-offset_right = 98.0
-offset_bottom = 15.0
+layout_mode = 2
 theme_type_variation = &"MenuTitle"
 text = "Mission Details
 "
 
-[node name="Category" type="RichTextLabel" parent="DetailPanel"]
-clip_contents = false
+[node name="DetailPanel" type="PanelContainer" parent="."]
+visible = false
 layout_mode = 0
-offset_left = 5.0
-offset_top = 5.0
-offset_right = 72.0
-offset_bottom = 16.0
+offset_left = 2.0
+offset_top = 21.0
+offset_right = 102.0
+offset_bottom = 178.0
+
+[node name="VSplitContainer" type="VSplitContainer" parent="DetailPanel"]
+layout_mode = 2
+split_offset = 10
+
+[node name="Category" type="RichTextLabel" parent="DetailPanel/VSplitContainer"]
+clip_contents = false
+layout_mode = 2
 text = "Category"
 
-[node name="Description" type="RichTextLabel" parent="DetailPanel"]
+[node name="Description" type="RichTextLabel" parent="DetailPanel/VSplitContainer"]
 clip_contents = false
-layout_mode = 0
-offset_left = 5.0
-offset_top = 22.0
-offset_right = 179.0
-offset_bottom = 101.0
+layout_mode = 2
 focus_mode = 2
 text = "This is a placeholder Text"
 
-[node name="ActionPanel" type="Panel" parent="DetailPanel"]
+[node name="ActionPanel" type="PanelContainer" parent="."]
+visible = false
 layout_mode = 0
-offset_left = 109.0
-offset_top = 108.0
-offset_right = 185.0
-offset_bottom = 157.0
+offset_left = 103.0
+offset_top = 21.0
+offset_right = 179.0
+offset_bottom = 70.0
 
-[node name="UseButton" type="Button" parent="DetailPanel/ActionPanel"]
-layout_mode = 0
-offset_left = 5.0
-offset_top = 5.0
-offset_right = 71.0
-offset_bottom = 23.0
+[node name="VBoxContainer" type="VBoxContainer" parent="ActionPanel"]
+layout_mode = 2
+
+[node name="UseButton" type="Button" parent="ActionPanel/VBoxContainer"]
+layout_mode = 2
 text = "Details
 "
 
-[node name="DiscardButton" type="Button" parent="DetailPanel/ActionPanel"]
-layout_mode = 0
-offset_left = 5.0
-offset_top = 26.0
-offset_right = 71.0
-offset_bottom = 44.0
+[node name="DiscardButton" type="Button" parent="ActionPanel/VBoxContainer"]
+layout_mode = 2
 text = "Set Active"
 
-[connection signal="pressed" from="MissionsPanel/HBoxContainer/AllMissions" to="." method="_on_all_missions_pressed"]
-[connection signal="pressed" from="MissionsPanel/HBoxContainer/ActiveMissions" to="." method="_on_active_missions_pressed"]
-[connection signal="pressed" from="MissionsPanel/HBoxContainer/CompletedMissions" to="." method="_on_completed_missions_pressed"]
-[connection signal="pressed" from="MissionsPanel/HBoxContainer/FailedMissions" to="." method="_on_failed_missions_pressed"]
+[connection signal="pressed" from="MissionsPanel/VBoxContainer/HBoxContainer/AllMissions" to="." method="_on_all_missions_pressed"]
+[connection signal="pressed" from="MissionsPanel/VBoxContainer/HBoxContainer/ActiveMissions" to="." method="_on_active_missions_pressed"]
+[connection signal="pressed" from="MissionsPanel/VBoxContainer/HBoxContainer/CompletedMissions" to="." method="_on_completed_missions_pressed"]
+[connection signal="pressed" from="MissionsPanel/VBoxContainer/HBoxContainer/FailedMissions" to="." method="_on_failed_missions_pressed"]

@@ -10,10 +10,11 @@ var current_dialogue = []
 var current_line = 0
 var current_dialogue_length = 0
 
-func update_ui():
-	start_dialogue("debug_dialogue")
+#func update_ui():
+	#start_dialogue("debug_dialogue")
 
 func start_dialogue(dialogue_id):
+	print("Starting Dialogue")
 	if dialogue_data[dialogue_id] != null:
 		in_dialogue = true
 		current_dialogue = dialogue_data[dialogue_id]

@@ -11,6 +11,7 @@ extends CanvasLayer
 	"notebook_menu" : $NotebookMenu,
 	"team_menu" : $TeamMenu,
 	"spirit_menu" : $SpiritMenu,
+	"dungeon_floor_proceed_menu" : $DungeonFloorProceedMenu,
 }
 
 @onready var dungeon_hud = $DungeonHUD
@@ -29,6 +30,11 @@ func _input(event):
 		go_to_menu("player_menu")
 	elif event.is_action_pressed("cancel") && open_ui != "none":
 		return_from_menu(open_ui)
+	elif open_ui != "none":
+		if event.is_action_pressed("ui_up") || event.is_action_pressed("ui_down") || event.is_action_pressed("ui_left") || event.is_action_pressed("ui_right"):
+			AudioManager.ui_select.play()
+		elif event.is_action_pressed("ui_accept"):
+			AudioManager.ui_click.play()
 
 func interaction_registered(menu):
 	if open_ui == "none":
@@ -70,6 +76,7 @@ func return_from_menu(menu):
 func close_ui():
 	if open_ui != "none":
 		menus[open_ui].close()
+		AudioManager.ui_exit_menu.play()
 		open_ui = "none"
 		if Global.show_dungeon_hud:
 			dungeon_hud.open()

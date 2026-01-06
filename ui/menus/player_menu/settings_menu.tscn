@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://p6plpk6w4ro7"]
 
-[ext_resource type="Script" path="res://ui/menus/player_menu/settings_menu.gd" id="1_hkskd"]
+[ext_resource type="Script" uid="uid://b7x54adlqr83r" path="res://ui/menus/player_menu/settings_menu.gd" id="1_hkskd"]
 
 [node name="SettingsMenu" type="Control"]
 layout_mode = 3
@@ -9,37 +9,29 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_hkskd")
 
-[node name="SettingsPanel" type="Panel" parent="."]
+[node name="TitlePanel" type="PanelContainer" parent="."]
 layout_mode = 0
 offset_left = 2.0
-offset_top = 21.0
-offset_right = 132.0
-offset_bottom = 178.0
+offset_top = 2.0
+offset_right = 54.0
+offset_bottom = 20.0
 
-[node name="TitlePanel" type="Panel" parent="SettingsPanel"]
-layout_mode = 0
-offset_top = -19.0
-offset_right = 52.0
-offset_bottom = -1.0
-
-[node name="Title" type="RichTextLabel" parent="SettingsPanel/TitlePanel"]
+[node name="Title" type="RichTextLabel" parent="TitlePanel"]
 clip_contents = false
-layout_mode = 0
-offset_left = 5.0
-offset_top = 4.0
-offset_right = 83.0
-offset_bottom = 15.0
+layout_mode = 2
 theme_type_variation = &"MenuTitle"
 text = "Settings"
 
-[node name="ColorPicker" type="ColorPicker" parent="SettingsPanel"]
+[node name="SettingsPanel" type="PanelContainer" parent="."]
 layout_mode = 0
-offset_left = 60.0
+offset_left = 2.0
 offset_top = 21.0
-offset_right = 358.0
+offset_right = 308.0
 offset_bottom = 293.0
-scale = Vector2(0.2, 0.2)
-color = Color(0.647059, 0.858824, 0.898039, 1)
+scale = Vector2(0.5, 0.5)
+
+[node name="ColorPicker" type="ColorPicker" parent="SettingsPanel"]
+layout_mode = 2
 edit_alpha = false
 sampler_visible = false
 color_modes_visible = false

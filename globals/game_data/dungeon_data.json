@@ -8,6 +8,8 @@
 		"generation_params" : {
 			"fluid_frequency" : 0.05,
 			"fluid_threshold" : 0.3,
+			"high_terrain_frequency" : 0.2,
+			"high_terrain_threshold" : 0.04,
 			"item_probability" : 50,
 			"max_num_rooms" : 8,
 			"max_num_1_tile_rooms" : 4,
@@ -32,6 +34,8 @@
 		"generation_params" : {
 			"fluid_frequency" : 0.08,
 			"fluid_threshold" : 0.05,
+			"high_terrain_frequency" : 0.2,
+			"high_terrain_threshold" : 0.04,
 			"item_probability" : 50,
 			"max_num_rooms" : 8,
 			"max_num_1_tile_rooms" : 4,
@@ -63,6 +67,17 @@
 		"details_large" : [
 			"res://world/dungeon/tilesets/terrain_details/deeper_woods_detail_large_01.png"
 		],
+		"generation_params" : {
+			"fluid_frequency" : 0.05,
+			"fluid_threshold" : 0.3,
+			"high_terrain_frequency" : 0.2,
+			"high_terrain_threshold" : 0.04,
+			"item_probability" : 50,
+			"max_num_rooms" : 8,
+			"max_num_1_tile_rooms" : 4,
+			"grid_width" : 118,
+			"grid_height" : 83
+		},
 		"dungeon_ost" : "ost_deeper_woods"
 	},
 	"dry_valley" : {
@@ -77,6 +92,17 @@
 		"floors" : 8,
 		"description" : "The dark desert.",
 		"terrain_id" : 6,
-		"fluid_id" : 100
+		"fluid_id" : 100,
+		"generation_params" : {
+			"fluid_frequency" : 0.05,
+			"fluid_threshold" : 0.3,
+			"high_terrain_frequency" : 0.2,
+			"high_terrain_threshold" : 0.04,
+			"item_probability" : 50,
+			"max_num_rooms" : 6,
+			"max_num_1_tile_rooms" : 8,
+			"grid_width" : 118,
+			"grid_height" : 83
+		}
 	}
 }

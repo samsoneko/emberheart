@@ -1,8 +1,8 @@
 [gd_scene load_steps=43 format=3 uid="uid://m428x1oojqfo"]
 
-[ext_resource type="Script" path="res://entities/npcs/test_dungeon_entity/player_follower_entity.gd" id="1_c557a"]
+[ext_resource type="Script" uid="uid://bmd0iw71pdaoi" path="res://entities/npcs/test_dungeon_entity/player_follower_entity.gd" id="1_c557a"]
 [ext_resource type="Texture2D" uid="uid://cfrpcmuh5vlbr" path="res://entities/items/item_shadow.png" id="2_8hdo1"]
-[ext_resource type="Texture2D" uid="uid://bn7yicc12rlcn" path="res://entities/player/player_spritesheet_2.png" id="3_keijq"]
+[ext_resource type="Texture2D" uid="uid://bn7yicc12rlcn" path="res://entities/player/player_spritesheet.png" id="3_keijq"]
 [ext_resource type="Texture2D" uid="uid://bcsn3pn1nv751" path="res://world/dungeon/darkness_filter.png" id="4_cj37f"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vuc0x"]

@@ -1,12 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://dgktgvu2wvj3k"]
+[gd_scene load_steps=9 format=3 uid="uid://dgktgvu2wvj3k"]
 
-[ext_resource type="Script" path="res://audio/audio_manager.gd" id="1_dxblr"]
+[ext_resource type="Script" uid="uid://da5xmd3o8483h" path="res://audio/audio_manager.gd" id="1_dxblr"]
 [ext_resource type="AudioStream" uid="uid://doojttrkrx1sd" path="res://audio/ost/lagoon.wav" id="2_4gd7w"]
 [ext_resource type="AudioStream" uid="uid://2mksjmu8goik" path="res://audio/ui_audio/select.wav" id="3_a8qey"]
 [ext_resource type="AudioStream" uid="uid://3r6jdm360oye" path="res://audio/ost/deeper_woods.wav" id="3_l0wp8"]
 [ext_resource type="AudioStream" uid="uid://dn4wgg7tfgfvk" path="res://audio/ui_audio/enter_menu.wav" id="4_sjidd"]
 [ext_resource type="AudioStream" uid="uid://4uldsiqnuala" path="res://audio/ui_audio/exit_menu.wav" id="5_jfxrr"]
 [ext_resource type="AudioStream" uid="uid://d1d6fo4xsqp5l" path="res://audio/ui_audio/click.wav" id="6_xq8pt"]
+[ext_resource type="AudioStream" uid="uid://6di84li1vd6t" path="res://audio/ui_audio/pickup.wav" id="8_hlghp"]
 
 [node name="AudioManager" type="Node"]
 script = ExtResource("1_dxblr")
@@ -30,3 +31,6 @@ stream = ExtResource("5_jfxrr")
 
 [node name="ui_click" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_xq8pt")
+
+[node name="pickup" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_hlghp")

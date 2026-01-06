@@ -8,7 +8,7 @@ var dungeon_data : Dictionary
 var dialogue_data : Dictionary
 
 const dungeon_tile_ids = {
-	"wall": 0,
+	"terrain": 0,
 	"ground": 1,
 	"fluid": 2,
 	"entry": 3,
@@ -16,6 +16,7 @@ const dungeon_tile_ids = {
 	"item": 5,
 	"path": 6,
 	"path_corner": 7,
+	"high_terrain": 8,
 }
 
 const mission_data = {

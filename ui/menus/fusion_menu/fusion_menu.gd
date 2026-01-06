@@ -13,14 +13,14 @@ var spirit_result
 var spirit_card_resource = preload("res://ui/elements/spirit_card/spirit_card.tscn")
 
 func update_ui():
-	for spirit_card in $Panel/ScrollContainer/CandidateList.get_children():
+	for spirit_card in $Panel/HSplitContainer/ScrollContainer/CandidateList.get_children():
 		spirit_card.queue_free()
 	for spirit in PlayerData.spirits:
 		var spirit_card = spirit_card_resource.instantiate()
 		spirit_card.spirit_selected.connect(spirit_selected)
 		spirit_card.setup(spirit, SpiritCard.States.LISTITEM)
-		$Panel/ScrollContainer/CandidateList.add_child(spirit_card)
-	$Panel/ScrollContainer/CandidateList.get_child(0).grab_focus()
+		$Panel/HSplitContainer/ScrollContainer/CandidateList.add_child(spirit_card)
+	$Panel/HSplitContainer/ScrollContainer/CandidateList.get_child(0).grab_focus()
 
 func spirit_selected(item):
 	match item.state:
@@ -42,7 +42,7 @@ func _on_Fusion_clicked():
 		# Setup monster card in UI
 		spirit_result = spirit_card_resource.instantiate()
 		spirit_result.setup(spirit, SpiritCard.States.RESULT)
-		$Panel/ResultSlot.add_child(spirit_result)
+		$Panel/HSplitContainer/VBoxContainer/ResultSlot.add_child(spirit_result)
 		spirit_result.spirit_selected.connect(spirit_selected)
 		# Removing the old instances in the ui and in the PlayerData
 		spirit_preview.queue_free()
@@ -55,17 +55,17 @@ func candidate_selected(spirit_card):
 	if spirit_candidate_1 == null:
 		print("Assigned candidate to slot 1")
 		spirit_candidate_1 = spirit_card
-		spirit_candidate_1.reparent($Panel/PH1Slot)
+		spirit_candidate_1.reparent($Panel/HSplitContainer/VBoxContainer/PH1Slot)
 		spirit_candidate_1.set_state(SpiritCard.States.PLACEHOLDER)
 	elif spirit_candidate_2 == null:
 		print("Assigned candidate to slot 2")
 		spirit_candidate_2 = spirit_card
-		spirit_candidate_2.reparent($Panel/PH2Slot)
+		spirit_candidate_2.reparent($Panel/HSplitContainer/VBoxContainer/PH2Slot)
 		spirit_candidate_2.set_state(SpiritCard.States.PLACEHOLDER)
 	if spirit_candidate_1 != null && spirit_candidate_2 != null && spirit_preview == null:
 		print("Generate preview")
 		spirit_preview = spirit_card_resource.instantiate()
-		$Panel/ResultSlot.add_child(spirit_preview)
+		$Panel/HSplitContainer/VBoxContainer/ResultSlot.add_child(spirit_preview)
 		var preview_dna = build_new_dna(spirit_candidate_1.spirit.dna, spirit_candidate_2.spirit.dna, spirit_candidate_1.spirit.dna_level, spirit_candidate_2.spirit.dna_level)
 		spirit_preview.setup_preview(preview_dna[0], preview_dna[1], SpiritCard.States.PREVIEW)
 
@@ -76,15 +76,15 @@ func candidate_unselected(spirit_card):
 	elif spirit_card == spirit_candidate_2:
 		print("Removed candidate from slot 1")
 		spirit_candidate_2 = null
-	spirit_card.reparent($Panel/ScrollContainer/CandidateList)
+	spirit_card.reparent($Panel/HSplitContainer/ScrollContainer/CandidateList)
 	spirit_card.set_state(SpiritCard.States.LISTITEM)
 	if spirit_preview != null:
 		spirit_preview.queue_free()
 		spirit_preview = null
 
 func spirit_created(spirit_card):
-	spirit_card.reparent($Panel/ScrollContainer/CandidateList)
-	$Panel/ScrollContainer/CandidateList.queue_redraw()
+	spirit_card.reparent($Panel/HSplitContainer/ScrollContainer/CandidateList)
+	$Panel/HSplitContainer/ScrollContainer/CandidateList.queue_redraw()
 	spirit_card.set_state(SpiritCard.States.LISTITEM)
 
 func build_new_dna(dna_1, dna_2, level_1, level_2):

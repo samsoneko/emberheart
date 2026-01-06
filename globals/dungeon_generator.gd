@@ -3,6 +3,8 @@ extends Node2D
 var generation_params = {
 	"fluid_frequency" : 0.05, # Smaller values mean larger fluid spots
 	"fluid_threshold" : 0.3, # Smaller means more fluid
+	"high_terrain_frequency" : 0.05, # Smaller values mean larger terrain spots
+	"high_terrain_threshold" : 0.3, # Smaller means more terrain
 	"item_probability" : 50,
 	"max_num_rooms" : 8, # Do not set to 1, otherwise infinite recursion occurs, because the pathbuilder tries to find a partner room different from the selected one
 	"max_num_1_tile_rooms" : 4, # Do not set to 1, otherwise infinite recursion occurs, because the pathbuilder tries to find a partner room different from the selected one
@@ -18,14 +20,23 @@ var room_to_room_margin = 1
 var entry_exit_placement_margin = 2 # Margin that entry and exit need to have from the border of their room, should not be larger than the room min radius
 
 # Floor setup
-var rng = RandomNumberGenerator.new()
+var seed_generator = RandomNumberGenerator.new()
+var terrain_rng = RandomNumberGenerator.new()
+var item_rng = RandomNumberGenerator.new()
+var detail_rng = RandomNumberGenerator.new()
 var noise_gen = FastNoiseLite.new()
 var dungeon_floor
 
-func generate_dungeon_floor(seed, dungeon_id):
+# Generates a single dungeon floor
+func generate_dungeon_floor(dungeon_seed, dungeon_id):
 	dungeon_floor = DungeonFloor.new()
-	rng.seed = seed
-	noise_gen.seed = seed
+	# Set up the random number generators
+	seed_generator.seed = dungeon_seed
+	terrain_rng.seed = seed_generator.randi()
+	item_rng.seed = seed_generator.randi()
+	detail_rng.seed = seed_generator.randi()
+	noise_gen.seed = seed_generator.randi()
+	
 	if GameData.dungeon_data[dungeon_id].has("generation_params"):
 		print("loaded generation params")
 		generation_params = GameData.dungeon_data[dungeon_id].generation_params
@@ -50,6 +61,7 @@ func generate_grid():
 	if !check_all_rooms_connected():
 		generate_grid()
 	generate_fluid()
+	generate_high_terrain()
 	generate_detail_locations()
 
 ## Replaces all grid values with zeros to reset the grid to its initial state
@@ -60,7 +72,7 @@ func reset_dungeon():
 	dungeon_floor.dungeon_item_locations = []
 	for x in range(generation_params.grid_width):
 		for y in range(generation_params.grid_height):
-			dungeon_floor.grid[x][y] = GameData.dungeon_tile_ids["wall"]
+			dungeon_floor.grid[x][y] = GameData.dungeon_tile_ids["terrain"]
 
 ## Initiates the grid with zeros, indicating a completely filled grid
 func instatiate_empty_grid():
@@ -68,13 +80,13 @@ func instatiate_empty_grid():
 	for i in generation_params.grid_width:
 		dungeon_floor.grid.append([])
 		for j in generation_params.grid_height:
-			dungeon_floor.grid[i].append(GameData.dungeon_tile_ids["wall"]) # Set a starter value for each position
+			dungeon_floor.grid[i].append(GameData.dungeon_tile_ids["terrain"]) # Set a starter value for each position
 
 ## Places a room on the grid, checking that it is within bounds and not within another room
 func generate_room():
-	var center = Vector2i(rng.randi_range(0 + room_to_border_margin, generation_params.grid_width-1 - room_to_border_margin), rng.randi_range(0 + room_to_border_margin, generation_params.grid_height-1 - room_to_border_margin))
-	var round_room = rng.randi_range(0, 1)
-	var radius = Vector2i(rng.randi_range(min_room_radius, max_room_radius), rng.randi_range(min_room_radius, max_room_radius))
+	var center = Vector2i(terrain_rng.randi_range(0 + room_to_border_margin, generation_params.grid_width-1 - room_to_border_margin), terrain_rng.randi_range(0 + room_to_border_margin, generation_params.grid_height-1 - room_to_border_margin))
+	var round_room = terrain_rng.randi_range(0, 1)
+	var radius = Vector2i(terrain_rng.randi_range(min_room_radius, max_room_radius), terrain_rng.randi_range(min_room_radius, max_room_radius))
 	var room = Room.new()
 	room.radius = radius
 	room.center = center
@@ -86,13 +98,13 @@ func generate_room():
 					dungeon_floor.grid[x][y] = GameData.dungeon_tile_ids["ground"]
 					if round_room == 1:
 						if (x == center.x - radius.x && y == center.y - radius.y) || (x == center.x + radius.x - 1 && y == center.y - radius.y) || (x == center.x - radius.x && y == center.y + radius.y - 1) || (x == center.x + radius.x - 1 && y == center.y + radius.y - 1):
-							dungeon_floor.grid[x][y] = GameData.dungeon_tile_ids["wall"]
+							dungeon_floor.grid[x][y] = GameData.dungeon_tile_ids["terrain"]
 	else:
 		generate_room()
 
 ## Places a specified number of one-tile-rooms for the grid to feature more paths and dead ends
 func generate_one_tile_room():
-	var center = Vector2i(rng.randi_range(0 + room_to_border_margin, generation_params.grid_width-1 - room_to_border_margin), rng.randi_range(0 + room_to_border_margin, generation_params.grid_height-1 - room_to_border_margin))
+	var center = Vector2i(terrain_rng.randi_range(0 + room_to_border_margin, generation_params.grid_width-1 - room_to_border_margin), terrain_rng.randi_range(0 + room_to_border_margin, generation_params.grid_height-1 - room_to_border_margin))
 	var room = Room.new()
 	room.center = center
 	if !check_overlap_room(room):
@@ -104,11 +116,11 @@ func generate_one_tile_room():
 
 ## Generates a path for each room, connecting it to another randomly chosen room
 func generate_path(room):
-	var partner = dungeon_floor.rooms[rng.randi_range(0, dungeon_floor.rooms.size()-1)]
+	var partner = dungeon_floor.rooms[terrain_rng.randi_range(0, dungeon_floor.rooms.size()-1)]
 	var point_0 = Vector2i(room.center.x, partner.center.y)
 	var point_1 = Vector2i(partner.center.x, room.center.y)
 	
-	if rng.randi_range(0, 1) == 0:
+	if terrain_rng.randi_range(0, 1) == 0:
 		for x in range(mini(point_0.x, partner.center.x), maxi(point_0.x, partner.center.x)):
 			dungeon_floor.grid[x][point_0.y] = GameData.dungeon_tile_ids["path"]
 		for y in range(mini(point_0.y, room.center.y), maxi(point_0.y, room.center.y)):
@@ -126,12 +138,13 @@ func generate_path(room):
 	else:
 		dungeon_floor.paths.append([room, partner])
 
+
 func generate_one_tile_room_path(one_tile_room):
-	var partner = dungeon_floor.rooms[rng.randi_range(0, dungeon_floor.rooms.size()-1)]
+	var partner = dungeon_floor.rooms[terrain_rng.randi_range(0, dungeon_floor.rooms.size()-1)]
 	var point_0 = Vector2i(one_tile_room.center.x, partner.center.y)
 	var point_1 = Vector2i(partner.center.x, one_tile_room.center.y)
 	
-	if rng.randi_range(0, 1) == 0:
+	if terrain_rng.randi_range(0, 1) == 0:
 		for x in range(mini(point_0.x, partner.center.x), maxi(point_0.x, partner.center.x)):
 			dungeon_floor.grid[x][point_0.y] = GameData.dungeon_tile_ids["path"]
 		for y in range(mini(point_0.y, one_tile_room.center.y), maxi(point_0.y, one_tile_room.center.y)):
@@ -187,9 +200,10 @@ func get_all_connected_rooms(test_paths, room, visited_rooms):
 func generate_item_locations():
 	for x in range(generation_params.grid_width):
 		for y in range(generation_params.grid_height):
-			if dungeon_floor.grid[x][y] == 1 && rng.randi_range(0, generation_params.item_probability) == 0:
+			if dungeon_floor.grid[x][y] == 1 && item_rng.randi_range(0, generation_params.item_probability) == 0:
 				dungeon_floor.grid[x][y] = GameData.dungeon_tile_ids["item"]
 				dungeon_floor.dungeon_item_locations.append(Vector2i(x, y))
+
 
 func generate_detail_locations():
 	for x in range(generation_params.grid_width):
@@ -199,12 +213,13 @@ func generate_detail_locations():
 				for j in range(-1, 2):
 					if x+i < 0 || x+i >= dungeon_floor.grid.size() || y+j < 0 || y+j >= dungeon_floor.grid[0].size():
 						continue
-					if dungeon_floor.grid[x+i][y+j] != GameData.dungeon_tile_ids["wall"]:
+					if dungeon_floor.grid[x+i][y+j] != GameData.dungeon_tile_ids["terrain"]:
 						placement_possible = false
-			if placement_possible && rng.randi_range(0, 10) == 0:
+			if placement_possible && detail_rng.randi_range(0, 10) == 0:
 				dungeon_floor.dungeon_large_detail_locations.append(Vector2i(x, y))
-			elif placement_possible && rng.randi_range(0, 5) == 0:
+			elif placement_possible && detail_rng.randi_range(0, 5) == 0:
 				dungeon_floor.dungeon_small_detail_locations.append(Vector2i(x, y))
+
 
 func generate_rocks(room):
 	for x in range(room.center.x-room.radius.x, room.center.x+room.radius.x):
@@ -214,22 +229,22 @@ func generate_rocks(room):
 				for j in range(-1, 2):
 					if x+i < 0 || x+i >= dungeon_floor.grid.size() || y+j < 0 || y+j >= dungeon_floor.grid[0].size():
 						placement_possible = false
-					elif dungeon_floor.grid[x+i][y+j] == GameData.dungeon_tile_ids["wall"]:
+					elif dungeon_floor.grid[x+i][y+j] == GameData.dungeon_tile_ids["terrain"]:
 						placement_possible = false
-			if placement_possible && rng.randi_range(0, 10) == 0:
-				dungeon_floor.grid[x][y] = GameData.dungeon_tile_ids["wall"]
+			if placement_possible && detail_rng.randi_range(0, 10) == 0:
+				dungeon_floor.grid[x][y] = GameData.dungeon_tile_ids["terrain"]
 
 ## Places the entry and the exit in random rooms on the grid
 func place_entry_and_exit():
 	#TODO: Fix that the chosen room matches the margin
-	var entry_room = dungeon_floor.rooms[rng.randi_range(0, dungeon_floor.rooms.size()-1)]
+	var entry_room = dungeon_floor.rooms[terrain_rng.randi_range(0, dungeon_floor.rooms.size()-1)]
 	entry_room.is_entry_room = true
-	var exit_room = dungeon_floor.rooms[rng.randi_range(0, dungeon_floor.rooms.size()-1)]
+	var exit_room = dungeon_floor.rooms[terrain_rng.randi_range(0, dungeon_floor.rooms.size()-1)]
 	while exit_room.is_entry_room == true:
-		exit_room = dungeon_floor.rooms[rng.randi_range(0, dungeon_floor.rooms.size()-1)]
-	dungeon_floor.entry_point = Vector2i(rng.randi_range(entry_room.upper_left.x + entry_exit_placement_margin, entry_room.upper_right.x - entry_exit_placement_margin), rng.randi_range(entry_room.upper_left.y + entry_exit_placement_margin, entry_room.lower_right.y - entry_exit_placement_margin))
+		exit_room = dungeon_floor.rooms[terrain_rng.randi_range(0, dungeon_floor.rooms.size()-1)]
+	dungeon_floor.entry_point = Vector2i(terrain_rng.randi_range(entry_room.upper_left.x + entry_exit_placement_margin, entry_room.upper_right.x - entry_exit_placement_margin), terrain_rng.randi_range(entry_room.upper_left.y + entry_exit_placement_margin, entry_room.lower_right.y - entry_exit_placement_margin))
 	dungeon_floor.grid[clamp(dungeon_floor.entry_point.x, 0, generation_params.grid_width-1)][clamp(dungeon_floor.entry_point.y, 0, generation_params.grid_height-1)] = GameData.dungeon_tile_ids["entry"]
-	dungeon_floor.exit_point = Vector2i(rng.randi_range(exit_room.upper_left.x + entry_exit_placement_margin, exit_room.upper_right.x - entry_exit_placement_margin), rng.randi_range(exit_room.upper_left.y + entry_exit_placement_margin, exit_room.lower_right.y - entry_exit_placement_margin))
+	dungeon_floor.exit_point = Vector2i(terrain_rng.randi_range(exit_room.upper_left.x + entry_exit_placement_margin, exit_room.upper_right.x - entry_exit_placement_margin), terrain_rng.randi_range(exit_room.upper_left.y + entry_exit_placement_margin, exit_room.lower_right.y - entry_exit_placement_margin))
 	dungeon_floor.grid[clamp(dungeon_floor.exit_point.x, 0, generation_params.grid_width-1)][clamp(dungeon_floor.exit_point.y, 0, generation_params.grid_height-1)] = GameData.dungeon_tile_ids["exit"]
 
 ## Uses FastNoise to place random spots of fluid on the grid
@@ -239,6 +254,21 @@ func generate_fluid():
 		for y in range(generation_params.grid_height):
 			if dungeon_floor.grid[x][y] == 0 && noise_gen.get_noise_2d(x, y) >= generation_params.fluid_threshold:
 				dungeon_floor.grid[x][y] = GameData.dungeon_tile_ids["fluid"]
+
+## Uses FastNoise to place random spots of higher terrain on the grid
+func generate_high_terrain():
+	noise_gen.frequency = generation_params.high_terrain_frequency
+	for x in range(1, generation_params.grid_width - 1):
+		for y in range(1, generation_params.grid_height - 1):
+			if dungeon_floor.grid[x][y] == 0 && noise_gen.get_noise_2d(x, y) >= generation_params.high_terrain_threshold:
+				var suitable_spot = true
+				for i in range(-1, 2):
+					for j in range(-1, 2):
+						if dungeon_floor.grid[x+i][y+j] != 0 && dungeon_floor.grid[x+i][y+j] != 8:
+							suitable_spot = false
+				if suitable_spot:
+					dungeon_floor.grid[x][y] = GameData.dungeon_tile_ids["high_terrain"]
+
 
 ## Checks if the room with the specified dimensions is inside of another room already placed on the grid
 func check_overlap_room(new_room : Room):

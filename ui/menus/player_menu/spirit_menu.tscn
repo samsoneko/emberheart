@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://clqeea3s4a84h"]
 
-[ext_resource type="Script" path="res://ui/menus/player_menu/spirit_menu.gd" id="1_tufs5"]
+[ext_resource type="Script" uid="uid://dmvkxdru8hf8f" path="res://ui/menus/player_menu/spirit_menu.gd" id="1_tufs5"]
 
 [node name="SpiritMenu" type="Control"]
 layout_mode = 3
@@ -9,35 +9,28 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_tufs5")
 
-[node name="SpiritPanel" type="Panel" parent="."]
+[node name="TitlePanel" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 45.0
+offset_bottom = 20.0
+
+[node name="Title" type="RichTextLabel" parent="TitlePanel"]
+clip_contents = false
+layout_mode = 2
+theme_type_variation = &"MenuTitle"
+text = "Spirits"
+
+[node name="SpiritPanel" type="PanelContainer" parent="."]
 layout_mode = 0
 offset_left = 2.0
 offset_top = 21.0
 offset_right = 132.0
 offset_bottom = 178.0
 
-[node name="TitlePanel" type="Panel" parent="SpiritPanel"]
-layout_mode = 0
-offset_top = -19.0
-offset_right = 43.0
-offset_bottom = -1.0
-
-[node name="Title" type="RichTextLabel" parent="SpiritPanel/TitlePanel"]
-clip_contents = false
-layout_mode = 0
-offset_left = 5.0
-offset_top = 4.0
-offset_right = 83.0
-offset_bottom = 15.0
-theme_type_variation = &"MenuTitle"
-text = "Spirits"
-
 [node name="ScrollContainer" type="ScrollContainer" parent="SpiritPanel"]
-layout_mode = 0
-offset_left = 5.0
-offset_top = 15.0
-offset_right = 125.0
-offset_bottom = 171.0
+layout_mode = 2
 follow_focus = true
 
 [node name="SpiritList" type="GridContainer" parent="SpiritPanel/ScrollContainer"]

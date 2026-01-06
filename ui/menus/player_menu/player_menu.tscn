@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://by7w8agupv31y"]
 
 [ext_resource type="Theme" uid="uid://dveyihe106cto" path="res://ui/theme/default_theme.tres" id="1_bisp7"]
-[ext_resource type="Script" path="res://ui/menus/player_menu/player_menu.gd" id="2_vgbtx"]
+[ext_resource type="Script" uid="uid://cpnsx8xoh2c6t" path="res://ui/menus/player_menu/player_menu.gd" id="2_vgbtx"]
 [ext_resource type="Texture2D" uid="uid://ck8xdry054yea" path="res://ui/elements/ui_icons_8x8/icon_sword.tres" id="4_w4p6x"]
 [ext_resource type="Texture2D" uid="uid://b24fu58dlapm1" path="res://ui/elements/ui_icons_8x8/icon_spirits.tres" id="5_t3u32"]
 [ext_resource type="Texture2D" uid="uid://bpoclrsway4rs" path="res://ui/elements/ui_icons_8x8/icon_apple.tres" id="6_2cuqo"]
@@ -16,7 +16,7 @@ theme = ExtResource("1_bisp7")
 script = ExtResource("2_vgbtx")
 
 [node name="TitlePanel" type="PanelContainer" parent="."]
-layout_mode = 2
+layout_mode = 0
 offset_left = 2.0
 offset_top = 2.0
 offset_right = 73.0

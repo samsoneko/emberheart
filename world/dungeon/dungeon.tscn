@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://de8ffd1akyuqn" path="res://world/dungeon/dungeon_manager.gd" id="1_paov1"]
 [ext_resource type="TileSet" uid="uid://c0xq5ys7aj1n1" path="res://world/dungeon/tilesets/dungeon_tileset.tres" id="2_j52v4"]
-[ext_resource type="Script" uid="uid://dmq7twyi3lou" path="res://world/dungeon/dungeon_tilemap.gd" id="3_y82ak"]
+[ext_resource type="Script" uid="uid://dmq7twyi3lou" path="res://world/dungeon/dungeon_renderer.gd" id="3_y82ak"]
 [ext_resource type="PackedScene" uid="uid://xl2aixuct3mt" path="res://world/dungeon/entry.tscn" id="4_pwhao"]
 [ext_resource type="PackedScene" uid="uid://dykndv5liwwhx" path="res://world/dungeon/exit.tscn" id="5_5itdv"]
 [ext_resource type="PackedScene" uid="uid://ddvibub5dt7bb" path="res://entities/player/player.tscn" id="6_160gt"]
@@ -27,6 +27,9 @@ tile_set = ExtResource("2_j52v4")
 use_parent_material = true
 tile_set = ExtResource("2_j52v4")
 
+[node name="Terrain2" type="TileMapLayer" parent="DungeonRenderer"]
+tile_set = ExtResource("2_j52v4")
+
 [node name="TerrainDetail" type="TileMapLayer" parent="DungeonRenderer"]
 use_parent_material = true
 tile_set = ExtResource("2_j52v4")
@@ -36,9 +39,11 @@ use_parent_material = true
 tile_set = ExtResource("2_j52v4")
 
 [node name="Entry" parent="." instance=ExtResource("4_pwhao")]
+z_index = 1
 position = Vector2(-16, 0)
 
 [node name="Exit" parent="." instance=ExtResource("5_5itdv")]
+z_index = 1
 position = Vector2(0, -16)
 
 [node name="Player" parent="." instance=ExtResource("6_160gt")]

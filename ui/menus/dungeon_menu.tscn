@@ -1,40 +1,34 @@
 [gd_scene load_steps=2 format=3 uid="uid://bfti50r02lmdw"]
 
-[ext_resource type="Script" path="res://ui/menus/dungeon_menu.gd" id="1_vvpk8"]
+[ext_resource type="Script" uid="uid://coajke0plym0l" path="res://ui/menus/dungeon_menu.gd" id="1_vvpk8"]
 
 [node name="DungeonMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_vvpk8")
 
-[node name="MainPanel" type="Panel" parent="."]
+[node name="TitlePanel" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 89.0
+offset_bottom = 19.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="TitlePanel"]
+layout_mode = 2
+theme_type_variation = &"MenuTitle"
+text = "Select Dungeon"
+fit_content = true
+
+[node name="MainPanel" type="PanelContainer" parent="."]
 layout_mode = 0
 offset_left = 2.0
 offset_top = 21.0
 offset_right = 106.0
 offset_bottom = 134.0
 
-[node name="TitlePanel" type="Panel" parent="MainPanel"]
-layout_mode = 0
-offset_top = -19.0
-offset_right = 87.0
-offset_bottom = -2.0
-
-[node name="RichTextLabel" type="RichTextLabel" parent="MainPanel/TitlePanel"]
-layout_mode = 0
-offset_left = 5.0
-offset_top = 4.0
-offset_right = 84.0
-offset_bottom = 15.0
-theme_type_variation = &"MenuTitle"
-text = "Select Dungeon"
-
 [node name="ScrollContainer" type="ScrollContainer" parent="MainPanel"]
-layout_mode = 0
-offset_left = 4.0
-offset_top = 4.0
-offset_right = 100.0
-offset_bottom = 109.0
+layout_mode = 2
 follow_focus = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MainPanel/ScrollContainer"]

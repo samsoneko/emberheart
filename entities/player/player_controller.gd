@@ -2,7 +2,7 @@ extends CharacterBody2D
 var input_direction = Vector2.ZERO
 # Free Movement
 @export var free_movement_speed : float = 80.0
-@export var acceleration : float = 20
+@export var acceleration : float = 30
 @export var sprint_speed : float = 2
 # Grid Movement
 var grid_position : Vector2i = Vector2i.ZERO
@@ -11,8 +11,10 @@ var is_moving = false
 var percentage_moved = 0.0
 var initial_position = Vector2.ZERO
 
+
 func _ready():
 	Global.register_player(self)
+
 
 func _physics_process(_delta):
 	
@@ -20,10 +22,12 @@ func _physics_process(_delta):
 		free_movement()
 	elif Global.player_movement_type == Global.MovementTypes.GRID:
 		grid_movement(_delta)
+	elif Global.ui_open:
+		animate_player(Vector2.ZERO)
+
 
 func free_movement():
 	input_direction = Input.get_vector("left", "right", "up", "down")
-	print(input_direction)
 	
 	if Input.is_action_pressed("sprint"):
 		input_direction *= sprint_speed
@@ -35,6 +39,7 @@ func free_movement():
 
 	move_and_slide()
 
+
 func grid_movement(delta):
 	
 	if !is_moving:
@@ -45,6 +50,7 @@ func grid_movement(delta):
 		is_moving = false
 	animate_player(input_direction)
 
+
 func process_player_input():
 	
 	input_direction = Vector2.ZERO
@@ -52,7 +58,7 @@ func process_player_input():
 	if Input.is_action_pressed("left"):
 		input_direction += Vector2.LEFT
 	if Input.is_action_pressed("right"):
-		input_direction += Vector2.RIGHT
+		input_direction = Vector2.RIGHT
 	if Input.is_action_pressed("up"):
 		input_direction += Vector2.UP
 	if Input.is_action_pressed("down"):
@@ -62,9 +68,11 @@ func process_player_input():
 		initial_position = position
 		is_moving = true
 		grid_position += Vector2i(input_direction)
-		Global.current_scene.make_turn()
+		if Global.game_state == Global.GameStates.DUNGEON:
+			Global.current_scene.make_turn()
 	else:
 		input_direction = Vector2.ZERO
+
 
 func move(delta):
 	var speed = grid_movement_speed
@@ -80,17 +88,26 @@ func move(delta):
 	else:
 		position = initial_position + (16 * input_direction * percentage_moved)
 
+
 func reset_grid_movement():
 	is_moving = false
 	percentage_moved = 0.0
 
+
 func animate_player(movement):
-	if movement.x > 0:
-		$AnimatedSprite2D.play("walk_right")
+	if movement.x < 0 && movement.y > 0:
+		$AnimatedSprite2D.play("walk_left_down")
+	elif movement.x > 0 && movement.y > 0:
+		$AnimatedSprite2D.play("walk_right_down")
+	elif movement.x < 0 && movement.y < 0:
+		$AnimatedSprite2D.play("walk_left_up")
+	elif movement.x > 0 && movement.y < 0:
+		$AnimatedSprite2D.play("walk_right_up")
 	elif movement.x < 0:
 		$AnimatedSprite2D.play("walk_left")
-	
-	if movement.y > 0:
+	elif movement.x > 0:
+		$AnimatedSprite2D.play("walk_right")
+	elif movement.y > 0:
 		$AnimatedSprite2D.play("walk_down")
 	elif movement.y < 0:
 		$AnimatedSprite2D.play("walk_up")
@@ -104,6 +121,15 @@ func animate_player(movement):
 			$AnimatedSprite2D.play("idle_up")
 		elif $AnimatedSprite2D.animation == "walk_down":
 			$AnimatedSprite2D.play("idle_down")
+		elif $AnimatedSprite2D.animation == "walk_left_down":
+			$AnimatedSprite2D.play("idle_left_down")
+		elif $AnimatedSprite2D.animation == "walk_right_down":
+			$AnimatedSprite2D.play("idle_right_down")
+		elif $AnimatedSprite2D.animation == "walk_left_up":
+			$AnimatedSprite2D.play("idle_left_up")
+		elif $AnimatedSprite2D.animation == "walk_right_up":
+			$AnimatedSprite2D.play("idle_right_up")
+
 
 func set_player_position(pos : Vector2i):
 	$CollisionShape2D.disabled = true
@@ -111,14 +137,18 @@ func set_player_position(pos : Vector2i):
 	position = pos
 	$CollisionShape2D.disabled = false
 
+
 func set_player_grid_position(pos):
 	grid_position = pos
+
 
 func get_player_grid_position():
 	return grid_position
 
+
 func show_darkness():
 	$DarknessSprite.show()
-	
+
+
 func hide_darkness():
 	$DarknessSprite.hide()

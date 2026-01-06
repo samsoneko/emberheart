@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=22 format=3 uid="uid://dveyihe106cto"]
+[gd_resource type="Theme" load_steps=23 format=3 uid="uid://dveyihe106cto"]
 
 [ext_resource type="Texture2D" uid="uid://j3o8x3oo4xt" path="res://ui/theme/ui_panels.png" id="1_ak56h"]
 [ext_resource type="FontFile" uid="uid://tfmikyhwj282" path="res://ui/Pixolletta8px.ttf" id="2_4skdy"]
@@ -57,7 +57,7 @@ texture_margin_left = 4.0
 texture_margin_top = 4.0
 texture_margin_right = 4.0
 texture_margin_bottom = 4.0
-region_rect = Rect2(0, 0, 16, 16)
+region_rect = Rect2(16, 0, 16, 16)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pvwff"]
 texture = ExtResource("1_ak56h")
@@ -90,6 +90,15 @@ texture_margin_top = 1.0
 texture_margin_right = 1.0
 texture_margin_bottom = 1.0
 region_rect = Rect2(8, 24, 8, 8)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_w0row"]
+texture = ExtResource("1_ak56h")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+region_rect = Rect2(0, 0, 16, 16)
+modulate_color = Color(1, 1, 1, 0.29411766)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ql2ur"]
 texture = ExtResource("1_ak56h")
@@ -160,6 +169,8 @@ SpriteBackgroundPanel/base_type = &"Panel"
 SpriteBackgroundPanel/styles/panel = SubResource("StyleBoxTexture_lr1cg")
 TextBackgroundPanel/base_type = &"Panel"
 TextBackgroundPanel/styles/panel = SubResource("StyleBoxTexture_bxfuw")
+TransparentPanelContainer/base_type = &"PanelContainer"
+TransparentPanelContainer/styles/panel = SubResource("StyleBoxTexture_w0row")
 VBoxContainer/constants/separation = 3
 VScrollBar/styles/grabber = SubResource("StyleBoxTexture_ql2ur")
 VScrollBar/styles/grabber_highlight = SubResource("StyleBoxTexture_rqtc0")

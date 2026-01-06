@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dx1cpn11kn8u7"]
 
-[ext_resource type="Script" path="res://ui/menus/player_menu/team_menu.gd" id="1_r2vyf"]
+[ext_resource type="Script" uid="uid://dx1oullfqyaio" path="res://ui/menus/player_menu/team_menu.gd" id="1_r2vyf"]
 
 [node name="TeamMenu" type="Control"]
 layout_mode = 3
@@ -9,25 +9,23 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_r2vyf")
 
-[node name="TeamPanel" type="Panel" parent="."]
+[node name="TitlePanel" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 37.0
+offset_bottom = 20.0
+
+[node name="Title" type="RichTextLabel" parent="TitlePanel"]
+clip_contents = false
+layout_mode = 2
+theme_type_variation = &"MenuTitle"
+text = "Team"
+
+[node name="TeamPanel" type="PanelContainer" parent="."]
 layout_mode = 0
 offset_left = 2.0
 offset_top = 21.0
 offset_right = 132.0
 offset_bottom = 178.0
-
-[node name="TitlePanel" type="Panel" parent="TeamPanel"]
-layout_mode = 0
-offset_top = -19.0
-offset_right = 35.0
-offset_bottom = -1.0
-
-[node name="Title" type="RichTextLabel" parent="TeamPanel/TitlePanel"]
-clip_contents = false
-layout_mode = 0
-offset_left = 5.0
-offset_top = 4.0
-offset_right = 83.0
-offset_bottom = 15.0
-theme_type_variation = &"MenuTitle"
-text = "Team"
+scale = Vector2(1, 0.984771)

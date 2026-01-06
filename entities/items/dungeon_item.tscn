@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://bupu8al1vjorh"]
+
+[ext_resource type="Script" uid="uid://cq2pq18in8esr" path="res://entities/items/dungeon_item.gd" id="1_63h1g"]
+[ext_resource type="Texture2D" uid="uid://cfrpcmuh5vlbr" path="res://entities/items/item_shadow.png" id="2_5g212"]
+[ext_resource type="Texture2D" uid="uid://gdj6nqnq2vdm" path="res://entities/items/item_sprite_00.tres" id="3_eehii"]
+
+[node name="DungeonItem" type="Node2D"]
+script = ExtResource("1_63h1g")
+
+[node name="ItemShadow" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.313726)
+position = Vector2(8, 8)
+texture = ExtResource("2_5g212")
+
+[node name="ItemSprite" type="Sprite2D" parent="."]
+position = Vector2(8, 8)
+texture = ExtResource("3_eehii")

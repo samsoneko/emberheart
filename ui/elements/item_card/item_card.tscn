@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://b7udfgmt80bbn"]
 
-[ext_resource type="Script" path="res://ui/elements/item_card/item_card.gd" id="1_7xsl7"]
+[ext_resource type="Script" uid="uid://cqggftfkqr8a" path="res://ui/elements/item_card/item_card.gd" id="1_7xsl7"]
 [ext_resource type="Texture2D" uid="uid://bx3hnvlho3660" path="res://ui/elements/ui_icons_8x8/icon_potion.tres" id="2_tayg4"]
 
 [node name="ItemCard" type="Control"]
@@ -23,7 +23,7 @@ texture = ExtResource("2_tayg4")
 
 [node name="ItemName" type="RichTextLabel" parent="Panel"]
 clip_contents = false
-layout_mode = 2
+layout_mode = 0
 offset_left = 20.0
 offset_top = 6.0
 offset_right = 94.0
@@ -32,7 +32,7 @@ text = "Default Item"
 
 [node name="ItemCount" type="RichTextLabel" parent="Panel"]
 clip_contents = false
-layout_mode = 2
+layout_mode = 0
 offset_left = 89.0
 offset_top = 6.0
 offset_right = 108.0
@@ -41,7 +41,7 @@ bbcode_enabled = true
 text = "[right]99[/right]"
 
 [node name="Button" type="Button" parent="Panel"]
-layout_mode = 2
+layout_mode = 0
 offset_right = 112.0
 offset_bottom = 22.0
 theme_type_variation = &"InvisibleButton"

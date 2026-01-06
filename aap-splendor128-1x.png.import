@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://j3o8x3oo4xt"
-path="res://.godot/imported/ui_panels.png-ee5ce687f5f4b6507d61444cb9223f36.ctex"
+uid="uid://63bo7gbgkwyr"
+path="res://.godot/imported/aap-splendor128-1x.png-60acc4ed682f50dc5e5b390a1423c2e4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ui/theme/ui_panels.png"
-dest_files=["res://.godot/imported/ui_panels.png-ee5ce687f5f4b6507d61444cb9223f36.ctex"]
+source_file="res://aap-splendor128-1x.png"
+dest_files=["res://.godot/imported/aap-splendor128-1x.png-60acc4ed682f50dc5e5b390a1423c2e4.ctex"]
 
 [params]
 

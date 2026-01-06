@@ -9,6 +9,7 @@ extends Node
 @onready var ui_enter_menu = $ui_enter_menu
 @onready var ui_exit_menu = $ui_exit_menu
 @onready var ui_click = $ui_click
+@onready var pickup = $pickup
 
 func start_ost(ost_name):
 	if osts.has(ost_name):
